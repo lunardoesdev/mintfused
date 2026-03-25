@@ -8,3 +8,6 @@ What I did:
 
 In the end I got 16gb sized iso, I tested it, it works just fine, it installs same way as mint does,
 I did test the installation on encrypted drive.
+
+Note: I did not upload the resulting iso because github wont allow me to upload 16gb file. Use cubic
+and build your own iso with all things you need to experience same pleasure!
