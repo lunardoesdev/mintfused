@@ -1,0 +1,168 @@
+#ppa section
+sudo apt-add-repository -y ppa:cubic-wizard/release
+sudo add-apt-repository -y ppa:purplei2p/i2pd
+sudo add-apt-repository -y ppa:cdemu/ppa
+sudo add-apt-repository -y ppa:xmake-io/xmake
+sudo add-apt-repository -y ppa:obsproject/obs-studio
+sudo add-apt-repository -y ppa:kiwixteam/release
+sudo add-apt-repository -y ppa:phoerious/keepassxc
+
+sudo apt update
+
+sudo apt upgrade -y
+
+# things to be installed with no recommends
+sudo apt install --no-install-recommends -y cubic
+
+rm -rf *.deb
+wget -O throne.deb 'https://github.com/throneproj/Throne/releases/download/1.1.1/Throne-1.1.1-debian-system-qt-x64.deb'
+sudo apt install -y ./throne.deb
+
+wget -O quarto.deb 'https://github.com/quarto-dev/quarto-cli/releases/download/v1.9.36/quarto-1.9.36-linux-amd64.deb'
+sudo apt install -y ./quarto.deb
+
+wget -O clashverge.deb 'https://github.com/clash-verge-rev/clash-verge-rev/releases/download/v2.4.7/Clash.Verge_2.4.7_amd64.deb'
+sudo apt install -y ./clashverge.deb
+
+wget -O happ.deb 'https://github.com/Happ-proxy/happ-desktop/releases/latest/download/Happ.linux.x64.deb'
+sudo apt install -y ./happ.deb
+
+wget -O manuskript.deb 'https://github.com/olivierkes/manuskript/releases/download/0.17.0/manuskript-0.17.0-1.deb'
+sudo apt install -y ./manuskript.deb
+
+wget -O vcard-studio.deb 'https://svn.zdechov.net/vcard-studio/bin/deb/vcard-studio_1.5.0_amd64.deb'
+sudo apt install -y ./vcard-studio.deb
+
+wget -O notetask.deb 'https://github.com/plaintool/notetask/releases/download/v1.1.2/notetask-1.1.2.deb'
+sudo apt install -y ./notetask.deb
+
+wget -O foliate.deb 'https://github.com/johnfactotum/foliate/releases/download/3.3.0/foliate_3.3.0_all.deb'
+sudo apt install -y ./foliate.deb
+
+wget -O veracrypt.deb 'https://github.com/veracrypt/VeraCrypt/releases/download/VeraCrypt_1.26.24/veracrypt-1.26.24-Debian-13-amd64.deb'
+sudo apt install -y ./veracrypt.deb
+
+wget -O veracons.deb 'https://launchpad.net/veracrypt/trunk/1.26.24/+download/veracrypt-console-1.26.24-Ubuntu-24.04-amd64.deb'
+sudo apt install -y ./veracons.deb
+
+wget -q https://raw.githubusercontent.com/ivan-hc/AM/main/AM-INSTALLER && chmod a+x ./AM-INSTALLER && ./AM-INSTALLER && rm ./AM-INSTALLER
+
+am install --system telegram blender gimp inkscape gapless tiled electrum exodus feather-wallet \
+ blender-rc helium tor-browser code scrcpy wps-office onlyoffice ripgrep ripgrep-all zed \
+ krita obsidian musescore cherry-studio helix ventoy
+ 
+
+
+# install calibre afterwards? 
+sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin
+
+sudo apt install -y i2pd cdemu-client cdemu-daemon eza ugrep \
+ clang mint-meta-codecs love xmake ffmpeg libsdl2-2.0-0 adb wget \
+                 gcc git pkg-config meson ninja-build libsdl2-dev \
+                 libavcodec-dev libavdevice-dev libavformat-dev libavutil-dev \
+                 libswresample-dev libusb-1.0-0 libusb-1.0-0-dev \
+ kiwix kiwix-tools nodejs npm build-essential cmake meson ttf-mscorefonts-installer \
+ libreoffice pandoc visidata qalculate-gtk libsfml-dev libglfw3-dev libsdl2-dev \
+ libasound2-dev libfuse2t64 qbittorrent vokoscreen-ng obs-studio adb fastboot \
+ extremetuxracer okular evince clementine strawberry kate konsole nodejs npm \
+ libgtk-4-dev libgtkmm-4.0-dev qtbase5-dev qt6-base-dev libfltk1.3-dev git fossil \
+ sqlitebrowser mingw-w64 lua5.4 python3 guile-3.0 python3-poetry scummvm scummvm-tools \
+ abiword gnumeric freedoom prboom-plus eureka openarena hedgewars openjdk-25-jdk rar unrar \
+ p7zip-full p7zip-rar golang clang clangd lldb gdb meld frescobaldi audacity \
+ keepassxc fd-find bat zoxide texlive-full systemd-zram-generator \
+ context groff smplayer mosh unison mgba-qt nestopia rclone restic ncdu tealdeer \
+ fonts-liberation fonts-noto fonts-dejavu-core fonts-firacode fonts-jetbrains-mono \
+ alacritty kitty tmux qemu-system-x86 qemu-utils virt-manager podman \
+ htop btop neofetch tree gparted podman-compose nnn fzf minetest minetest*
+
+sudo tldr --update
+
+#frankenphp
+VERSION=85 # 82-85 available
+sudo curl https://pkg.henderkes.com/api/packages/${VERSION}/debian/repository.key -o /etc/apt/keyrings/static-php${VERSION}.asc
+echo "deb [signed-by=/etc/apt/keyrings/static-php${VERSION}.asc] https://pkg.henderkes.com/api/packages/${VERSION}/debian php-zts main" | sudo tee -a /etc/apt/sources.list.d/static-php${VERSION}.list
+sudo apt update
+sudo apt install -y frankenphp
+
+#winehq
+sudo mkdir -pm755 /etc/apt/keyrings
+wget -O - https://dl.winehq.org/wine-builds/winehq.key | sudo gpg --dearmor -o /etc/apt/keyrings/winehq-archive.key -
+
+sudo dpkg --add-architecture i386
+
+sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/noble/winehq-noble.sources
+
+sudo apt update
+sudo apt install --install-recommends -y winehq-stable
+
+# fresh editor
+curl https://raw.githubusercontent.com/sinelaw/fresh/refs/heads/master/scripts/install.sh | sh
+
+# uv
+wget 'https://github.com/astral-sh/uv/releases/download/0.11.0/uv-x86_64-unknown-linux-gnu.tar.gz'
+tar xvf uv-x86_64-unknown-linux-gnu.tar.gz
+mv uv-x86_64-unknown-linux-gnu/uv /usr/bin/uv
+mv uv-x86_64-unknown-linux-gnu/uvx /usr/bin/uvx
+rm -rf uv-x86_64-unknown-linux-gnu.tar.gz uv-x86_64-unknown-linux-gnu
+
+# rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | \
+  CARGO_HOME=/usr/local/cargo RUSTUP_HOME=/usr/local/rustup sh -s -- -y --no-modify-path
+
+echo 'export RUSTUP_HOME=/usr/local/rustup' >> /etc/profile.d/rust.sh
+echo 'export CARGO_HOME=/usr/local/cargo' >> /etc/profile.d/rust.sh
+echo 'export PATH="$CARGO_HOME/bin:$PATH"' >> /etc/profile.d/rust.sh
+
+/usr/local/cargo/bin/rustup default stable
+/usr/local/cargo/bin/rustup component add rust-analyzer rust-src clippy
+
+
+# npm packages
+sudo npm install -g opencode-ai @openai/codex @anthropic-ai/claude-code \
+ bun
+
+# sharun
+wget -O /usr/bin/sharun 'https://github.com/VHSgunzo/sharun/releases/download/v0.8.1/sharun-x86_64-aio'
+chmod +x /usr/bin/sharun
+
+# bash aliases
+cat <<EOF >> /etc/bash.bashrc
+alias find='fdfind'
+alias ls='eza'
+EOF
+
+# zram config
+cat << 'EOF' > /etc/systemd/zram-generator.conf
+[zram0]
+zram-size = ram
+compression-algorithm = zstd
+EOF
+
+cat << 'EOF' > /etc/sysctl.d/99-vm-zram-parameters.conf
+vm.swappiness = 180
+vm.watermark_boost_factor = 0
+vm.watermark_scale_factor = 125
+vm.page-cluster = 0
+EOF
+
+
+# nix package manager
+curl -fsSL https://install.determinate.systems/nix | sh -s -- install
+
+
+# cleanup
+
+sudo apt clean
+sudo apt autoclean
+sudo rm -rf /var/lib/apt/lists/*
+sudo rm -rf /var/cache/apt/archives/*.deb
+rm -rf /root/* # in root home directory
+
+sudo rm -rf /tmp/*
+sudo rm -rf /var/tmp/*
+sudo find /var/log -type f -name "*.log" -exec truncate -s 0 {} \;
+
+cat /dev/null > ~/.bash_history
+history -c
+
+
