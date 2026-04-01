@@ -116,6 +116,14 @@ echo 'export PATH="$CARGO_HOME/bin:$PATH"' >> /etc/profile.d/rust.sh
 /usr/local/cargo/bin/rustup default stable
 /usr/local/cargo/bin/rustup component add rust-analyzer rust-src clippy
 
+# allow write for everyone to cargo
+# this is for cargo install things to work
+sudo chmod -R 777 /usr/local/cargo
+sudo chmod -R 777 /usr/local/rustup
+
+cargo install cargo-binstall
+cargo binstall --strategies crate-meta-data jj-cli
+
 
 # npm packages
 sudo npm install -g opencode-ai @openai/codex @anthropic-ai/claude-code \
@@ -148,6 +156,10 @@ EOF
 
 # nix package manager
 curl -fsSL https://install.determinate.systems/nix | sh -s -- install
+
+
+# liquorix kernel
+curl -s 'https://liquorix.net/install-liquorix.sh' | sudo bash
 
 
 # cleanup
