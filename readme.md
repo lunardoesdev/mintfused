@@ -11,3 +11,6 @@ I did test the installation on encrypted drive.
 
 Note: I did not upload the resulting iso because github wont allow me to upload 16gb file. Use cubic
 and build your own iso with all things you need to experience same pleasure!
+
+# donate
+you can donate me at https://lunardoesdev.github.io/donate/
